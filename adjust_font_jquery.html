@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adjust font size with jQuery</title>
+</head>
+<body>
+	<code>
+		if (screen.width < 415) {
+		 	 $('.page #header.masthead h1').each(function(){
+			     var el= $(this);
+			       var textLength = el.html().length;
+			        if (textLength > 5) {
+			            el.css('font-size', '32px');
+			        }
+			});
+	 	}
+	</code>
+</body>
+</html>
