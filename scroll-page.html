@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Scroll page with menu</title>
+</head>
+<body>
+	smoothscroll 
+	<code>
+		
+	    $('.affix a[href^="#"]').on('click', function (e) {
+	        e.preventDefault();
+	        $(document).off("scroll");
+	        
+	        $('.affix a.active').each(function () {
+	            $(this).removeClass('active');
+	        })
+	        $(this).addClass('active');
+	      
+	        var target = this.hash,
+	            menu = target,
+	            headerHeight = 110;
+	        $target = $(target);
+	        $('html, body').stop().animate({
+	            'scrollTop': $target.offset().top - headerHeight
+	        }, 500, 'swing', function () {
+	            window.location.hash = target;
+	            $(document).on("scroll", onScroll);
+	        });
+	    });
+
+		function onScroll(event){
+		    var scrollPos = $(document).scrollTop();
+		    $('.affix a[href^="#"]').each(function () {
+		        var currLink = $(this);
+		        var refElement = $(currLink.attr("href"));
+		        var headerHeight = 360;
+		        console.log(refElement);
+		        if (refElement.position().top - headerHeight <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+		            $('a.active').removeClass("active");
+		            currLink.addClass("active");
+		        }
+		        else{
+		            currLink.removeClass("active");
+		        }
+	    	});
+		}
+	</code>
+</body>
+</html>
